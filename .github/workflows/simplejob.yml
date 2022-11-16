@@ -1,9 +1,17 @@
 name: Simple job
 
-on: push
+on:
+  push:
+    branches:
+    - main
+    
 jobs:
   simple-job:
     runs-on: ubuntu-latest
     
     steps:
-    
+      - name: Building docker image
+        run: docker build -t fundowakin/simplepython .
+
+      - name: Pushing to DockerHub
+        run: docker push fundowakin/simplepython
